@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  background-color: darkgray;
+  padding: 35px;
+}
+
+.container {
+  margin: 30px auto;
+  width: 400px;
+  text-align: center;
+}
