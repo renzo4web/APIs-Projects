@@ -3,7 +3,11 @@ const container = document.querySelector('.container');
 const btnGuess = document.getElementById('guessBtn');
 const guessNum = document.getElementById('guessNum');
 const guessText = document.getElementById('guessText');
+const selectTypeGame = document.getElementById('dropwdown');
+const form = document.querySelector('form');
+let gameSelected;
 let ImdbRating;
+
 const movie = {};
 
 movie.getTop250 = function () {
@@ -12,19 +16,22 @@ movie.getTop250 = function () {
     method: 'GET',
     redirect: 'follow',
   };
-  fetch('./moviePupolar.json')
+  fetch(
+    'https://api.themoviedb.org/3/movie/top_rated?api_key=7935656617eee5e9e3219add057f26cb&language=en-US&page=1'
+  )
     .then((response) => response.text())
     .then((result) => {
       let g = JSON.parse(result);
-      console.log(g.items[randomTitle]);
+      console.log(g.results);
       this.renderCard(
-        g.items[randomTitle].image,
-        g.items[randomTitle].fullTitle
-      );
-      ImdbRating = parseFloat(g.items[randomTitle].imDbRating);
+        "https://image.tmdb.org/t/p/w500/"+g.results[randomTitle].backdrop_path,
+        g.results[randomTitle].original_title
+        );
+        ImdbRating = parseFloat(g.results[randomTitle].imDbRating);
     })
     .catch((error) => console.log('error', error));
 };
+
 
 movie.randomMovie = function () {
   return Math.floor(Math.random() * 99);
@@ -39,15 +46,48 @@ movie.renderCard = function (img, title) {
   container.insertAdjacentHTML('afterbegin', card);
 };
 
-btn.addEventListener('click', () => {
-  container.innerHTML = '';
-  movie.getTop250();
+// Form Validation and start
+form.addEventListener('input', () => {
+  gameSelected = selectTypeGame.value;
+  form
+
+  if (gameSelected == 1) {
+   
+    startGame("TOP250")
+  } else if(gameSelected == 2){
+   
+    startGame("GUESS RANKING")
+  }
+ 
+
 });
-btnGuess.addEventListener('click', (e) => {
-  e.preventDefault();
-  console.log(Math.round(ImdbRating), parseInt(guessNum.value));
-  guess(Math.round(ImdbRating), parseInt(guessNum.value));
-});
+
+
+
+
+// Start Gamee func
+function startGame(type) {
+  if (type == 'TOP250') {
+    console.log('TOP250');
+    //Top 250 Movies Guess Ranking
+    btn.addEventListener('click', () => {
+      container.innerHTML = '';
+      guessNum.value = 0;
+      movie.getTop250();
+
+      //Guess Send
+      btnGuess.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(Math.round(ImdbRating), parseInt(guessNum.value));
+        guess(Math.round(ImdbRating), parseInt(guessNum.value));
+      });
+    });
+  } else {
+    console.log('GUESS SCORE');
+  }
+}
+
+
 
 function guess(rating, guess) {
   if (rating > guess) {
