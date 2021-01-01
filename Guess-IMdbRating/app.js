@@ -24,17 +24,17 @@ movie.getTop250 = function () {
       let g = JSON.parse(result);
       console.log(g.results);
       this.renderCard(
-        "https://image.tmdb.org/t/p/w500/"+g.results[randomTitle].backdrop_path,
+        'https://image.tmdb.org/t/p/w500/' + g.results[randomTitle].poster_path,
         g.results[randomTitle].original_title
-        );
-        ImdbRating = parseFloat(g.results[randomTitle].imDbRating);
+      );
+        ImdbRating = parseFloat(g.results[randomTitle].vote_average);
     })
     .catch((error) => console.log('error', error));
 };
 
 
 movie.randomMovie = function () {
-  return Math.floor(Math.random() * 99);
+  return Math.floor(Math.random() * 20);
 };
 
 movie.renderCard = function (img, title) {
