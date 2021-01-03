@@ -5,17 +5,16 @@ const guessNum = document.getElementById('guessNum');
 const guessText = document.getElementById('guessText');
 const selectTypeGame = document.getElementById('dropwdown');
 const form = document.querySelector('form');
-let gameSelected;
+const reset = '';
 let ImdbRating;
 let pageCount = 1;
-let randomNumbers = 20
 let moviesCollection = []
+let randomNumbers = 20
 
 const movie = {};
 
 movie.getTop250 = function () {
   const randomTitle = this.randomMovie();
-  // Count the Movies when reach 20 change page
   const requestOptions = {
     method: 'GET',
     redirect: 'follow',
@@ -26,36 +25,33 @@ movie.getTop250 = function () {
     .then((response) => response.text())
     .then((result) => {
       g = JSON.parse(result);
-      //console.log(g.results);
-      
+      // Copy result to a array 
       if (moviesCollection == "") moviesCollection = [...(g.results)];
-      console.log("numrand"+randomTitle)
-     
-        
       
-
-
+    
       this.renderCard(
         'https://image.tmdb.org/t/p/w500/' + moviesCollection[randomTitle].backdrop_path,
-        moviesCollection[randomTitle].original_title
+        moviesCollection[randomTitle].title
         );
         ImdbRating = parseFloat(moviesCollection[randomTitle].vote_average);
+        // Remove the movies from the array to avoid repetition
         moviesCollection.splice(randomTitle,1)
-        
-        
         console.log(moviesCollection)
         console.log(pageCount)
+      
     })
     .catch((error) => console.log('error', error));
 };
 
 movie.randomMovie = function () {
+  
+  //If the array is changin the random number the same to avoid undefined 
   randomNumbers -= 1 
+  //When array is empty change page and reset random number
   if(randomNumbers < 0){
-    randomNumbers = 20
+    randomNumbers = moviesCollection.length
     pageCount++
   } 
-  console.log("COunt"+randomNumbers)
   return Math.floor(Math.random() * randomNumbers );
 };
 
@@ -81,8 +77,9 @@ function startGame(type) {
     console.log('TOP250');
     //Top 250 Movies Guess Ranking
     btn.addEventListener('click', () => {
-      container.innerHTML = '';
-      guessNum.value = 0;
+      container.innerHTML = reset;
+      guessNum.value = reset;
+      guessText.textContent = reset;
       movie.getTop250();
      
 
@@ -103,10 +100,13 @@ function startGame(type) {
 function guess(rating, guess) {
   if (rating > guess) {
     guessText.textContent = 'Low Rating';
+    guessNum.value = reset;
   } else if (guess > rating) {
     guessText.textContent = 'Soo High';
+    guessNum.value = reset;
   } else {
     guessText.textContent = 'Congrats';
+    guessNum.value = reset;
   }
 }
 

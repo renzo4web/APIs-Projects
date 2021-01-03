@@ -5,6 +5,16 @@
   font-family: sans-serif;
 }
 
+
+@media (max-width: 375px) {
+  
+body{
+  width: 350px;
+  margin: 0 auto ;
+  background-color: cornsilk;
+}
+
+
 h1 {
   margin: 0;
   font-size: 40px;
@@ -22,10 +32,100 @@ h2{
 
 .container {
   margin: 30px auto;
-  width: 400px;
   text-align: center;
 }
 
 img{
-  width: 250px;
+  
+  width: 200px;
+}
+
+
+.form{
+  margin: 0 auto;
+  width: 200px;
+}
+
+input{
+  margin: 15px auto;
+  width: 80px;
+  text-align: center;
+  height: 30px;
+} 
+
+
+#getMovie{
+  width: 60px;
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+guessBtn{
+
+  width: 60px;
+  font-size: 20px;
+  margin: 0 auto;
+
+}
+
+}
+
+
+body{
+  width: 600px;
+  margin: 0 auto ;
+  background-color: cornsilk;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  background-color: darkgray;
+  padding: 35px;
+}
+
+
+
+h2{
+  text-align: center;
+}
+
+.container {
+  margin: 30px auto;
+  text-align: center;
+}
+
+img{
+  
+  width: 200px;
+}
+
+
+.form{
+  margin: 0 auto;
+  width: 200px;
+}
+
+input{
+  margin: 15px auto;
+  width: 150px;
+  text-align: center;
+  height: 30px;
+} 
+
+
+#getMovie{
+  width: 100px;
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+guessBtn{
+
+  width: 100px;
+  font-size: 20px;
+  margin: 0 auto;
+
 }
