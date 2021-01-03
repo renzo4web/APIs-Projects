@@ -3,31 +3,60 @@ const container = document.querySelector('.container');
 const btnGuess = document.getElementById('guessBtn');
 const guessNum = document.getElementById('guessNum');
 const guessText = document.getElementById('guessText');
+const selectTypeGame = document.getElementById('dropwdown');
+const form = document.querySelector('form');
+let gameSelected;
 let ImdbRating;
+let pageCount = 1;
+let randomNumbers = 20
+let moviesCollection = []
+
 const movie = {};
 
 movie.getTop250 = function () {
   const randomTitle = this.randomMovie();
+  // Count the Movies when reach 20 change page
   const requestOptions = {
     method: 'GET',
     redirect: 'follow',
   };
-  fetch('./moviePupolar.json')
+  fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=7935656617eee5e9e3219add057f26cb&language=en-US&page=${pageCount}`
+  )
     .then((response) => response.text())
     .then((result) => {
-      let g = JSON.parse(result);
-      console.log(g.items[randomTitle]);
+      g = JSON.parse(result);
+      //console.log(g.results);
+      
+      if (moviesCollection == "") moviesCollection = [...(g.results)];
+      console.log("numrand"+randomTitle)
+     
+        
+      
+
+
       this.renderCard(
-        g.items[randomTitle].image,
-        g.items[randomTitle].fullTitle
-      );
-      ImdbRating = parseFloat(g.items[randomTitle].imDbRating);
+        'https://image.tmdb.org/t/p/w500/' + moviesCollection[randomTitle].backdrop_path,
+        moviesCollection[randomTitle].original_title
+        );
+        ImdbRating = parseFloat(moviesCollection[randomTitle].vote_average);
+        moviesCollection.splice(randomTitle,1)
+        
+        
+        console.log(moviesCollection)
+        console.log(pageCount)
     })
     .catch((error) => console.log('error', error));
 };
 
 movie.randomMovie = function () {
-  return Math.floor(Math.random() * 99);
+  randomNumbers -= 1 
+  if(randomNumbers < 0){
+    randomNumbers = 20
+    pageCount++
+  } 
+  console.log("COunt"+randomNumbers)
+  return Math.floor(Math.random() * randomNumbers );
 };
 
 movie.renderCard = function (img, title) {
@@ -39,15 +68,37 @@ movie.renderCard = function (img, title) {
   container.insertAdjacentHTML('afterbegin', card);
 };
 
-btn.addEventListener('click', () => {
-  container.innerHTML = '';
-  movie.getTop250();
-});
-btnGuess.addEventListener('click', (e) => {
-  e.preventDefault();
-  console.log(Math.round(ImdbRating), parseInt(guessNum.value));
-  guess(Math.round(ImdbRating), parseInt(guessNum.value));
-});
+
+
+    startGame('TOP250');
+
+
+
+
+// Start Gamee func
+function startGame(type) {
+  if (type == 'TOP250') {
+    console.log('TOP250');
+    //Top 250 Movies Guess Ranking
+    btn.addEventListener('click', () => {
+      container.innerHTML = '';
+      guessNum.value = 0;
+      movie.getTop250();
+     
+
+      //Guess Send
+      btnGuess.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(Math.round(ImdbRating), parseInt(guessNum.value));
+        guess(Math.round(ImdbRating), parseInt(guessNum.value));
+      });
+    });
+  } else {
+    console.log('GUESS SCORE');
+  }
+}
+
+
 
 function guess(rating, guess) {
   if (rating > guess) {
@@ -58,3 +109,5 @@ function guess(rating, guess) {
     guessText.textContent = 'Congrats';
   }
 }
+
+console.log(moviesCollection)
