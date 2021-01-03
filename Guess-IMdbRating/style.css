@@ -14,8 +14,18 @@ h1 {
   padding: 35px;
 }
 
+
+
+h2{
+  text-align: center;
+}
+
 .container {
   margin: 30px auto;
   width: 400px;
   text-align: center;
+}
+
+img{
+  width: 250px;
 }

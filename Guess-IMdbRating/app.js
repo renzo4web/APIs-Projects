@@ -7,34 +7,56 @@ const selectTypeGame = document.getElementById('dropwdown');
 const form = document.querySelector('form');
 let gameSelected;
 let ImdbRating;
+let pageCount = 1;
+let randomNumbers = 20
+let moviesCollection = []
 
 const movie = {};
 
 movie.getTop250 = function () {
   const randomTitle = this.randomMovie();
+  // Count the Movies when reach 20 change page
   const requestOptions = {
     method: 'GET',
     redirect: 'follow',
   };
   fetch(
-    'https://api.themoviedb.org/3/movie/top_rated?api_key=7935656617eee5e9e3219add057f26cb&language=en-US&page=1'
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=7935656617eee5e9e3219add057f26cb&language=en-US&page=${pageCount}`
   )
     .then((response) => response.text())
     .then((result) => {
-      let g = JSON.parse(result);
-      console.log(g.results);
+      g = JSON.parse(result);
+      //console.log(g.results);
+      
+      if (moviesCollection == "") moviesCollection = [...(g.results)];
+      console.log("numrand"+randomTitle)
+     
+        
+      
+
+
       this.renderCard(
-        'https://image.tmdb.org/t/p/w500/' + g.results[randomTitle].poster_path,
-        g.results[randomTitle].original_title
-      );
-        ImdbRating = parseFloat(g.results[randomTitle].vote_average);
+        'https://image.tmdb.org/t/p/w500/' + moviesCollection[randomTitle].backdrop_path,
+        moviesCollection[randomTitle].original_title
+        );
+        ImdbRating = parseFloat(moviesCollection[randomTitle].vote_average);
+        moviesCollection.splice(randomTitle,1)
+        
+        
+        console.log(moviesCollection)
+        console.log(pageCount)
     })
     .catch((error) => console.log('error', error));
 };
 
-
 movie.randomMovie = function () {
-  return Math.floor(Math.random() * 20);
+  randomNumbers -= 1 
+  if(randomNumbers < 0){
+    randomNumbers = 20
+    pageCount++
+  } 
+  console.log("COunt"+randomNumbers)
+  return Math.floor(Math.random() * randomNumbers );
 };
 
 movie.renderCard = function (img, title) {
@@ -46,21 +68,9 @@ movie.renderCard = function (img, title) {
   container.insertAdjacentHTML('afterbegin', card);
 };
 
-// Form Validation and start
-form.addEventListener('input', () => {
-  gameSelected = selectTypeGame.value;
-  form
 
-  if (gameSelected == 1) {
-   
-    startGame("TOP250")
-  } else if(gameSelected == 2){
-   
-    startGame("GUESS RANKING")
-  }
- 
 
-});
+    startGame('TOP250');
 
 
 
@@ -74,6 +84,7 @@ function startGame(type) {
       container.innerHTML = '';
       guessNum.value = 0;
       movie.getTop250();
+     
 
       //Guess Send
       btnGuess.addEventListener('click', (e) => {
@@ -98,3 +109,5 @@ function guess(rating, guess) {
     guessText.textContent = 'Congrats';
   }
 }
+
+console.log(moviesCollection)
