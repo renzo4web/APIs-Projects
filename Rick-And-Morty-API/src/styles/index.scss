@@ -1,0 +1,38 @@
+$body-color: slateblue;
+
+@import 'single-card.scss';
+@import 'palette.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: $body-color;
+  font-family: 'Nanum Pen Script', cursive;
+  padding: 5em;
+  background-color: #efefef;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 3em;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2em;
+}

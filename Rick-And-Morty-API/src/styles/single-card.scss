@@ -1,0 +1,42 @@
+@import 'palette.scss';
+
+.card {
+  background-color: $card-background-color;
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    min-width: 0;
+    min-height: 0;
+    object-fit: cover;
+    flex-basis: 250px;
+    cursor: pointer;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff;
+    padding: 1em 2em;
+
+    .card__title {
+      font-size: 1.7rem;
+      color: $accent;
+    }
+
+    .card__stat {
+      width: 100%;
+      margin: 1em 0;
+      display: inline-flex;
+      justify-content: space-between;
+
+      span:first-child {
+        color: pink;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
