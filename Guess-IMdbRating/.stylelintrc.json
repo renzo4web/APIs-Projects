@@ -1,0 +1,51 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "font-family-no-duplicate-names": [
+            true,
+            {
+                "ignoreFontFamilyNames": [
+                    "/^My Font /",
+                    "monospace"
+                ]
+            }
+        ],
+        "block-closing-brace-newline-after": [
+            "always",
+            {
+                "ignoreAtRules": [
+                    "if",
+                    "else"
+                ]
+            }
+        ],
+        "at-rule-empty-line-before": [
+            "always",
+            {
+                "except": [
+                    "after-same-name",
+                    "inside-block",
+                    "blockless-after-same-name-blockless",
+                    "blockless-after-blockless",
+                    "first-nested"
+                ]
+            }
+        ],
+        "at-rule-no-unknown": [
+            true,
+            {
+                "ignoreAtRules": [
+                    "extends",
+                    "ignores",
+                    "mixin",
+                    "include",
+                    "use",
+                    "function",
+                    "return",
+                    "if",
+                    "else"
+                ]
+            }
+        ]
+    }
+}

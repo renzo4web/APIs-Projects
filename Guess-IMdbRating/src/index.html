@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+  <title> Guess the Movie Rating</title>
+</head>
+<body class="bg-yellow-500 text-gray-800">
+
+  <div class="container md:mx-auto">
+    <header>
+
+
+
+      <h1 class="text-4xl font-bold text-center leading-normal mt-0 mb-2 text-gray-800">
+        Guess the Movie Rating 🎬
+      </h1>
+    </header>
+    <h2 class="text-3xl font-bold text-center">What is the rating of this film?</h2>
+  
+    <main>
+      <div id="root"></div>
+    </main>
+  
+    <div class="form sm:max-w-xs sm:mx-auto">
+
+      <h4 class="animate-pulse text-4xl shadow-md rounded-full text-white text-center m-5 font-bold bg-blue-800 p-2" id="guessText"></h4>
+  
+      <div class="relative flex w-full flex-wrap items-stretch mb-3">
+        <input  id="guessNum" type="number" placeholder="Enter Score..." class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full pr-10"/>
+        <span class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+          <i class="fas fa-sort-numeric-up-alt"></i>
+        </span>
+      </div>
+  
+      <button id="getMovie" class="w-full bg-blue-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        New Movie
+  </button>
+      <button id="guessBtn" class="w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Guess
+  </button>
+    </div>
+  </div>
+
+
+  <footer class="text-center mt-3 object-center">
+      <a href="https://github.com/renzo4web">Made with 💘 by Renzo</a>
+  </footer>
+</body>
+</html>
