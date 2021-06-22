@@ -1,5 +1,4 @@
 import '../styles/index.scss';
-import { getCategoriesAPI } from './Api/jeopardyApi';
 import { init } from './App';
 
 if (process.env.NODE_ENV === 'development') {

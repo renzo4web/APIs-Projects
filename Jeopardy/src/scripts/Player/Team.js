@@ -4,7 +4,9 @@ export class Team {
     this.score = 0;
     this.id = num;
     this.index = num - 1;
+    this.$element;
   }
+
   addPoint() {
     this.score++;
   }

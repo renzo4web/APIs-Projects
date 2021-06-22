@@ -1,7 +1,7 @@
 $body-color: slateblue;
 
-@import 'single-card.scss';
-@import 'palette.scss';
+@import "single-card.scss";
+@import "palette.scss";
 
 * {
   box-sizing: border-box;
@@ -11,7 +11,7 @@ $body-color: slateblue;
 
 body {
   color: $body-color;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   height: 100vh;
   padding: 2em 5em;
   position: relative;
@@ -29,6 +29,11 @@ body {
   justify-content: center;
   align-items: center;
   transition: all 450ms ease;
+
+  .note {
+    opacity: 0.8;
+    color: red;
+  }
 }
 
 .grid {
@@ -126,7 +131,7 @@ body {
     border-left: 23px solid transparent;
     border-top: 23px solid #a7a7a7;
     bottom: 2px;
-    content: '';
+    content: "";
     position: absolute;
     right: 5px;
   }
@@ -135,7 +140,7 @@ body {
     border-left: 21px solid transparent;
     border-top: 21px solid #efefef;
     bottom: 4px;
-    content: '';
+    content: "";
     position: absolute;
     right: 6px;
   }
@@ -153,6 +158,7 @@ body {
   background-color: #e19519;
   cursor: pointer;
   border: none;
+  margin-top: 1em;
   padding: 0.5em 3em;
 
   &:hover {
@@ -163,13 +169,14 @@ body {
 .teams {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   font-size: 2rem;
+  justify-content: space-around;
   color: #e19519;
   margin-top: 0.5em;
 
   .team {
-    margin: 0 2em;
+    margin: 1em;
     display: flex;
     flex-direction: column;
     text-align: center;

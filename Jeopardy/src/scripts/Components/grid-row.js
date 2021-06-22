@@ -6,12 +6,15 @@ export const cellQuestionHTML = (clue) => {
         <div class="cell points">
             <div class="cell-inner">${value}</div>
             <div class="front-answer speech-bubble-ds">
+            <p class='note'>NOTE: PRESS ESC TO EXIT</p>
                 <p>${answer}</p>
             </div>
             <div class="back-question">
               <div class="speech-bubble-ds">
+              <p class='note'>NOTE: PRESS SPACE TO SEE RESULT</p>
                   <p>${question}</p>
                 <div class="speech-bubble-ds__arrow"></div>
+
               </div>          
             </div>
         </div>

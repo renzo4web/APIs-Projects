@@ -5,70 +5,78 @@
   margin: 0;
 }
 input,
-button,
-submit {
+button {
   border: none;
 }
-body {
-  background-color: #e5f4e3;
+
+h1 {
+  margin: 1em 0;
+  font-size: 2rem;
 }
 
-input {
-  text-align: center;
-  width: 800px;
-  height: 30px;
-  border-radius: 19px;
-  background: #ffffff;
-  box-shadow: inset 22px 22px 37px #dedede, inset -22px -22px 37px #ffffff;
+nav {
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 0;
+  align-items: stretch;
 }
-button {
-  height: 30px;
-  border-radius: 19px;
-  background: green;
-  box-shadow: inset 22px 22px 37px green, inset -22px -22px 37px #ffffff;
+nav button {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  margin: 0.5em;
+}
+nav input[type='text'] {
+  flex-grow: 1;
+  font-size: 1.5rem;
+  padding: 1em 0.5em;
+}
+
+body {
+  background-color: #c0c0c0;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.window {
+  width: 90%;
+  max-width: 900px;
+  flex-grow: 1;
+  margin: 3em 0;
+  display: none;
+}
+
+.window.open{
+  display: block;
 }
 
 .container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  grid-template-rows: auto auto auto auto auto auto;
-  row-gap: 5px;
-  justify-items: center;
-  column-gap: 5px;
-  width: 1600px;
-  height: auto;
-  border-radius: 19px;
-  background: #ffffff;
-  box-shadow: 22px 22px 37px #dedede, -22px -22px 37px #ffffff;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  row-gap: 1em;
+  column-gap: 1em;
+  padding: 1em;
 }
 
-img {
-  width: 200px;
+.container img {
+  background-color: grey;
+  width: 100%;
+  margin: auto;
   height: auto;
+  object-fit: cover;
   border-radius: 7px;
 }
 
-@media (max-width: 1470px) {
-  .container {
-    width: 1250px;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: auto auto auto auto auto;
-  }
-}
-
-@media (max-width: 1150px) {
-  .container {
-    width: 600px;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
-  }
-}
-
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  background-color: blueviolet;
+  padding: 1em 0;
   text-align: center;
 }

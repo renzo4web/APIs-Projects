@@ -1,8 +1,9 @@
-const resetParameters = '';
-const btn = document.getElementById('btnSearch');
-const search = document.getElementById('search-bar');
-const btnSticker = document.getElementById('btnSticker');
-const containerElements = document.querySelector('.container');
+const resetParameters = "";
+const btn = document.getElementById("btnSearch");
+const search = document.getElementById("search-bar");
+const btnSticker = document.getElementById("btnSticker");
+let containerElements = document.querySelector(".container");
+const nav = document.querySelector("nav");
 let searchTerm;
 let dataObj;
 const requestGif = (value, limit) => {
@@ -16,7 +17,9 @@ searchGif();
 searchSticker();
 
 function searchGif() {
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".window").classList.add('open');
+
     containerElements.innerHTML = resetParameters;
     searchTerm = search.value;
     callAJAX(requestGif(searchTerm, 50));
@@ -25,7 +28,7 @@ function searchGif() {
 }
 
 function searchSticker() {
-  btnSticker.addEventListener('click', () => {
+  btnSticker.addEventListener("click", () => {
     containerElements.innerHTML = resetParameters;
     searchTerm = search.value;
     callAJAX(requestSticker(searchTerm, 50));
@@ -34,7 +37,7 @@ function searchSticker() {
 }
 function createElement(elmentToDisplay, alt) {
   containerElements.insertAdjacentHTML(
-    'afterbegin',
+    "afterbegin",
     `<img src='${elmentToDisplay}' alt='${alt}' onclick="clickToCopy(this)" />`
   );
 }
@@ -46,14 +49,14 @@ function displayGifOrSticker(dataObj, limit) {
 function clickToCopy(url) {
   let copyUrl = url.src;
   navigator.clipboard.writeText(copyUrl);
-  alert(url.alt + 'copied');
-  console.log(copyUrl);
+  alert("image copied to the clipboard 👌");
 }
+
 function callAJAX(url) {
   let GyphyAJAXCall = new XMLHttpRequest();
-  GyphyAJAXCall.open('GET', url);
+  GyphyAJAXCall.open("GET", url);
   GyphyAJAXCall.send();
-  GyphyAJAXCall.addEventListener('load', (e) => {
+  GyphyAJAXCall.addEventListener("load", (e) => {
     dataObj = JSON.parse(e.target.response).data;
     displayGifOrSticker(dataObj, 50);
   });
