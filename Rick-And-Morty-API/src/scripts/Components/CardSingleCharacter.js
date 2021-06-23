@@ -1,38 +1,32 @@
-
-
 export const CardHTML = (character) => {
+  const { name, status, species, type, gender, image, id } = character;
 
-    const {
-        name,
-        status,
-        species,
-        type,
-        gender,
-        image
-    } = character;
-
-
-    const html = `
-        <div class="card">
+  const html = `
+        <div class="card shadow">
             <img  src="${image}" alt="${name}">
-            <section class="card__content">
-                <h4 class="card__title">${name}</h4>
-                <div class="card__stat">
-                    <span>Status</span> <span>${status}</span>
-                </div>
-                <div class="card__stat">
-                    <span>Species</span><span>${species}</span>
-                </div>
-                <div class="card__stat">
-                    <span>type</span> <span>${type}</span>
-                </div>
-                <div class="card__stat">
-                    <span>gender</span> <span>${gender}</span>
-                </div>
+            <h4 class="card__title">${name}</h4>
+            <ul class="list-group list-group-flush">
+  <li class="list-group-item"><span class='text-primary fw-bold fs-3'>Status</span> <span class='fs-3 text-decoration-underline'>${status}</span></li>
+  <li class="list-group-item"><span class='text-primary fw-bold fs-3'>Species</span><span class='fs-3 text-decoration-underline'>${species}</span></li>
+  
+  ${
+    type
+      ? `<li class="list-group-item"><span class='text-primary fw-bold fs-3'>type</span> <span class='fs-3 text-decoration-underline'>${type}</span></li>`
+      : ""
+  }
+ 
+  <li class="list-group-item"><span class='text-primary fw-bold fs-3'>gender</span> <span class='fs-3 text-decoration-underline'>${gender}</span></li>
+</ul>
+
+
+
+                <button type="button" data-id=${id}  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#info-modal">
+               Read More
+              </button>
+  
              </div> 
                 
     `;
 
-    return html;
-
+  return html;
 };

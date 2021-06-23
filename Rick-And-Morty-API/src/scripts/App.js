@@ -1,16 +1,13 @@
-import {callAPI} from "./Api/characterApi";
-import {loadHTML} from "./Pages/Home";
-import {initEvents} from "./Components/Components";
-
-export let currCharacters = '';
+import { callAPI} from "./Api/characterApi";
+import { loadHTML } from "./Pages/Home";
+import { initEvents } from "./Components/Components";
 
 export async function init() {
-    try {
-        const charactersData = await callAPI();
-        loadHTML(charactersData);
-        currCharacters = charactersData;
-        initEvents();
-    } catch (e) {
-        console.warn(e);
-    }
+  try {
+    const charactersData = await callAPI();
+    loadHTML(charactersData);
+    initEvents();
+  } catch (e) {
+    console.warn(e);
+  }
 }

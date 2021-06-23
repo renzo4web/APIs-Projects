@@ -1,23 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+      rel="stylesheet"
+    />
+    <title>Rick & Morty</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-    <title>webpack starterkit</title>
-</head>
+  <body class="container">
+    <h1 class="display-2 fw-bold text-danger">Rick & Morty</h1>
+    <p class="display-5">Everything you want to know about your favorite characters</p>
 
-<body>
-<form>
-    <input type="search" id="search">
-</form>
-<div class="root">
+    <div class="row justify-content-center padding m-5">
+      <div class="col-md-8 ftco-animate fadeInUp ftco-animated">
+          <form>
+              <div class="form-group d-md-flex"> <input type="text" class="form-control px-4" placeholder="Enter the name of your favorite..."></div>
+          </form>
+      </div>
+  </div>
 
+    <div class="root"></div>
 
-</div>
+    <button id='btn-more' class="btn btn-info fs-5">More Characters</button>
 
+    <footer>
+         <p class="lead">
+           Made by <a href="https://github.com/renzo4web">Renzo</a> made with their own hands
+         </p> 
+    </footer>
 
-</body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="info-modal"
+      tabindex="-1"
+      aria-labelledby="CharacterInfo"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fs-4 text-white" id="info-modal-label">
+              Modal title
+            </h5>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
